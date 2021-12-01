@@ -2,7 +2,7 @@
 
 root_path="/media/nate/Data/UCSNet/dtu/training"
 
-save_path="./training_$(date +"%F-%T")"
+save_path="/media/nate/Data/UCSNet/dtu/training_$(date +"%F-%T")"
 num_gpus=1
 batch=2
 
