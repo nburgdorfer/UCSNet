@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 
-save_path="/new1/shuocheng/dtu_results"
+save_path="./dtu_results"
 test_list="./dataloader/datalist/dtu/test.txt"
-root_path="/new1/shuocheng/dtu/mvs_eval/dtu"
+root_path="/media/nate/Data/UCSNet/dtu/testing/"
 
 
 

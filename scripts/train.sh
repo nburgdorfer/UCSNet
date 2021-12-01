@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-root_path="/cephfs/shuocheng/mvs_training/dtu"
-
-root_path="/new1/shuocheng/dtu/mvs_training/dtu"
+root_path="/media/nate/Data/UCSNet/dtu/training"
 
 save_path="./training_$(date +"%F-%T")"
-num_gpus=$1
+num_gpus=1
 batch=2
 
 mkdir -p $save_path
