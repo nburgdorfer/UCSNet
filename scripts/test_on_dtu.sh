@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 
-save_path="/media/nate/Data/UCSNet/dtu/dtu_results"
+save_path="/media/nate/Data/UCSNet/dtu/dtu_training_results"
 test_list="./dataloader/datalist/dtu/test.txt"
-root_path="/media/nate/Data/UCSNet/dtu/testing/"
+root_path="/media/nate/Data/UCSNet/dtu/dmfnet_training/"
 
 
 
