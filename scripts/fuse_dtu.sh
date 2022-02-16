@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-exe_path="/home/shuocheng/fusibile/fusibile"
-root_path="/new1/shuocheng/dtu_results"
-target_path="/new1/shuocheng/dtu_points"
+exe_path="/home/nate/dev/research/fusibile/fusibile"
+root_path="/media/nate/Data/UCSNet/dtu/dtu_results"
+target_path="/media/nate/Data/UCSNet/dtu/dtu_points"
 
 
 

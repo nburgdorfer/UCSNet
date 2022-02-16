@@ -5,8 +5,8 @@
 #test_list="./dataloader/datalist/tanks/test.txt"
 #root_path="/new1/shuocheng/tankandtemples"
 
-save_path="/cephfs/shuocheng/tanks_results"
+save_path="/media/nate/Data/UCSNet/tanksandtemples/Output"
 test_list="./dataloader/datalist/tanks/test.txt"
-root_path="/cephfs/shuocheng/tankandtemples/intermediate"
+root_path="/media/nate/Data/UCSNet/tanksandtemples/intermediate"
 
 CUDA_VISIBLE_DEVICES=0 python test.py --root_path $root_path --test_list $test_list --save_path $save_path --max_h 1080 --max_w 1920
