@@ -181,7 +181,9 @@ class MVSTestSet(Dataset):
         extr_mat = np.array(extr_mat, np.float32)
         intr_mat = np.array(intr_mat, np.float32)
 
-        min_dep, delta = list(map(float, cam_txt[11].strip().split()))
+        bounds_info = list(map(float, cam_txt[11].strip().split()))
+        min_dep = bounds_info[0]
+        delta = bounds_info[1]
         max_dep = 1.06 * 191.5 * delta + min_dep
 
         return extr_mat, intr_mat, min_dep, max_dep
