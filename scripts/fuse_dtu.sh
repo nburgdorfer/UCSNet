@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 exe_path="/home/nate/dev/research/fusibile/fusibile"
-root_path="/media/nate/Data/UCSNet/dtu/dtu_results"
+root_path="/media/nate/Data/UCSNet/dtu/testing_results"
 target_path="/media/nate/Data/UCSNet/dtu/dtu_points"
 
 
