@@ -8,6 +8,7 @@ EXE_PATH="/home/nate/dev/research/fusibile/fusibile"
 EVAL=/media/nate/Data/Evaluation/dtu/
 EVAL_CODE_DIR=${EVAL}dtu_evaluation/python/
 PC_DIR_NAME=ucsnet
+EVAL_PC_DIR=${EVAL}mvs_data/Points/${PC_DIR_NAME}/
 EVAL_RESULTS_DIR=${EVAL}mvs_data/Results/
 
 
@@ -16,6 +17,9 @@ EVAL_RESULTS_DIR=${EVAL}mvs_data/Results/
 
 fusion() {
 	echo -e "Running Gipuma Fusion with disp_th=${1} and num_consist=${2}..."
+
+	rm -rf ${OUTPUT_PATH}/point_clouds
+	mkdir ${OUTPUT_PATH}/point_clouds
 
 	### Fusion ###
 	#SCANS=({1..24} {28..53} {55..72} {74..77} {82..128})
@@ -28,16 +32,14 @@ fusion() {
 	done
 
 	# move merged point cloud to evaluation path
+	# delete previous Points if directory is not empty
+	rm -r $EVAL_PC_DIR*
+
+
 	python utils/collect_pointclouds.py --root_dir $OUTPUT_PATH --target_dir ${OUTPUT_PATH}/point_clouds --dataset "dtu"
 	cp ${OUTPUT_PATH}/point_clouds/* ${EVAL_PC_DIR}
 
-
 	## Evaluate the output point clouds
-	# delete previous results if 'Results' directory is not empty
-	if [ "$(ls -A $EVAL_RESULTS_DIR)" ]; then
-		rm -r $EVAL_RESULTS_DIR*
-	fi
-
 	EVAL_LIST=$(printf ",%s" "${SCANS[@]}")
 	EVAL_LIST=${EVAL_LIST:1}
 
@@ -52,7 +54,7 @@ fusion() {
 #fusion 1.0 3 | tee -a "/media/nate/Data/UCSNet/dtu/test1.txt"
 
 ### TEST 2 ###
-fusion 2.0 3 | tee -a "/media/nate/Data/UCSNet/dtu/test2.txt"
+#fusion 2.0 3 | tee -a "/media/nate/Data/UCSNet/dtu/test2.txt"
 
 ### TEST 3 ###
 fusion 4.0 3 | tee -a "/media/nate/Data/UCSNet/dtu/test3.txt"
@@ -71,6 +73,3 @@ fusion 0.25 15 | tee -a "/media/nate/Data/UCSNet/dtu/test7.txt"
 
 ### TEST 8 ###
 fusion 0.25 20 | tee -a "/media/nate/Data/UCSNet/dtu/test8.txt"
-
-### TEST 9 ###
-fusion 0.25 30 | tee -a "/media/nate/Data/UCSNet/dtu/test9.txt"
