@@ -10,6 +10,7 @@ EVAL_CODE_DIR=${EVAL}dtu_evaluation/python/
 PC_DIR_NAME=ucsnet
 EVAL_PC_DIR=${EVAL}mvs_data/Points/${PC_DIR_NAME}/
 EVAL_RESULTS_DIR=${EVAL}mvs_data/Results/
+LOG_FILE=/media/nate/Data/UCSNet/dtu/log.txt
 
 
 ### Testing ###
@@ -23,7 +24,8 @@ fusion() {
 
 	### Fusion ###
 	#SCANS=({1..24} {28..53} {55..72} {74..77} {82..128})
-	SCANS=(1 4 9 10 11 12 13 15 23 24 29 32 33 34 48 49 62 75 77 110 114 118)
+	#SCANS=(1 4 9 10 11 12 13 15 23 24 29 32 33 34 48 49 62 75 77 110 114 118)
+	SCANS=(1 11 23 48 77)
 
 	for SCAN_NUM in ${SCANS[@]}
 	do
@@ -35,7 +37,6 @@ fusion() {
 	# delete previous Points if directory is not empty
 	rm -r $EVAL_PC_DIR*
 
-
 	python utils/collect_pointclouds.py --root_dir $OUTPUT_PATH --target_dir ${OUTPUT_PATH}/point_clouds --dataset "dtu"
 	cp ${OUTPUT_PATH}/point_clouds/* ${EVAL_PC_DIR}
 
@@ -44,32 +45,9 @@ fusion() {
 	EVAL_LIST=${EVAL_LIST:1}
 
 	# run evaluation on output point clouds
-	cd ${EVAL_CODE_DIR}
-	python -u base_eval.py --method ${PC_DIR_NAME} --results_path ${EVAL_RESULTS_DIR} --eval_list ${EVAL_LIST}
+	#cd ${EVAL_CODE_DIR}
+	#python -u base_eval.py --method ${PC_DIR_NAME} --results_path ${EVAL_RESULTS_DIR} --eval_list ${EVAL_LIST}
 }
 
-
-
-### TEST 1 ###
-#fusion 1.0 3 | tee -a "/media/nate/Data/UCSNet/dtu/test1.txt"
-
-### TEST 2 ###
-#fusion 2.0 3 | tee -a "/media/nate/Data/UCSNet/dtu/test2.txt"
-
-### TEST 3 ###
-fusion 4.0 3 | tee -a "/media/nate/Data/UCSNet/dtu/test3.txt"
-
-### TEST 4 ###
-fusion 8.0 3 | tee -a "/media/nate/Data/UCSNet/dtu/test4.txt"
-
-### TEST 5 ###
-fusion 16.0 3 | tee -a "/media/nate/Data/UCSNet/dtu/test5.txt"
-
-### TEST 6 ###
-fusion 0.25 10 | tee -a "/media/nate/Data/UCSNet/dtu/test6.txt"
-
-### TEST 7 ###
-fusion 0.25 15 | tee -a "/media/nate/Data/UCSNet/dtu/test7.txt"
-
-### TEST 8 ###
-fusion 0.25 20 | tee -a "/media/nate/Data/UCSNet/dtu/test8.txt"
+rm -rf $LOG_FILE
+fusion 0.25 3 | tee -a $LOG_FILE
