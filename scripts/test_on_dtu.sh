@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 ### parameters ###
-OUTPUT_PATH="/media/nate/Data/UCSNet/dtu/testing_results"
+OUTPUT_PATH="/media/nate/Data/Results/UCSNet/dtu/Output"
 SCENE_LIST="./dataloader/datalist/dtu/testing.txt"
 DATA_PATH="/media/nate/Data/DTU"
-MAX_H=1200
-MAX_W=1600
+#MAX_H=1200
+#MAX_W=1600
 
-#MAX_H=512
-#MAX_W=640
+MAX_H=512
+MAX_W=640
 
 EXE_PATH="/home/nate/dev/research/fusibile/fusibile"
 EVAL=/media/nate/Data/Evaluation/dtu/
@@ -16,7 +16,7 @@ EVAL_CODE_DIR=${EVAL}dtu_evaluation/python/
 PC_DIR_NAME=ucsnet
 EVAL_PC_DIR=${EVAL}mvs_data/Points/${PC_DIR_NAME}/
 EVAL_RESULTS_DIR=${EVAL}mvs_data/Results/
-LOG_FILE=/media/nate/Data/UCSNet/dtu/log.txt
+LOG_FILE=${OUTPUT_PATH}/log.txt
 
 
 ### Testing ###
