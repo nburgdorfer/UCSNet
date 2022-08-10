@@ -67,6 +67,10 @@ def main(args):
 
         print('Testing {} frame {} ...'.format(scene_name, frame_idx))
         start_time = time.time()
+        bounds = sample_cuda["depth_values"]
+        min_depth = bounds[0,0].cpu().item()
+        max_depth = bounds[0,1].cpu().item()
+
         outputs = model(sample_cuda["imgs"], sample_cuda["proj_matrices"], sample_cuda["depth_values"])
         end_time = time.time()
 
@@ -93,7 +97,7 @@ def main(args):
         Image.fromarray(ref_img).save(rgb_path+'/{:08d}.png'.format(frame_idx))
 
         cam = sample["proj_matrices"]["stage3"][0, 0].numpy()
-        save_cameras(cam, cam_path+'/cam_{:08d}.txt'.format(frame_idx))
+        save_cameras(cam, min_depth, max_depth, cam_path+'/cam_{:08d}.txt'.format(frame_idx))
 
         for stage_id in range(3):
             cur_res = outputs["stage{}".format(stage_id+1)]

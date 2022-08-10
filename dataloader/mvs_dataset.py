@@ -159,7 +159,7 @@ class MVSTestSet(Dataset):
     def generate_pairs(self, ):
         data_pairs = []
         for scene_name in self.scene_names:
-            pair_list = open('{}/cams/pair.txt'.format(self.root_dir), 'r').readlines()
+            pair_list = open('{}/{}/pair.txt'.format(self.root_dir, scene_name), 'r').readlines()
             pair_list = list(map(lambda x: x.strip(), pair_list))
             cnt = int(pair_list[0])
             for i in range(cnt):
@@ -202,12 +202,12 @@ class MVSTestSet(Dataset):
         res = {}
 
         for i, idx in enumerate(frame_idx):
-            img_path = '{}/images/{}/{:08d}.png'.format(self.root_dir, scene_name, idx)
+            img_path = '{}/{}/images/{:08d}.png'.format(self.root_dir, scene_name, idx)
 
             image = Image.open(img_path)
             image = np.array(image, dtype=np.float32) / 255.
 
-            cam_path = '{}/cams/{:08d}_cam.txt'.format(self.root_dir, idx)
+            cam_path = '{}/{}/cams/{:08d}_cam.txt'.format(self.root_dir, scene_name, idx)
             extr_mat, intr_mat, min_dep, max_dep = self.parse_cameras(cam_path)
 
             image, intr_mat = scale_inputs(image, intr_mat, max_h=self.max_h, max_w=self.max_w)

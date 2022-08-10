@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 ### parameters ###
-OUTPUT_PATH="/media/nate/Data/Results/UCSNet/dtu/Output"
-SCENE_LIST="./dataloader/datalist/dtu/testing.txt"
-DATA_PATH="/media/nate/Data/DTU"
-#MAX_H=1200
-#MAX_W=1600
+OUTPUT_PATH="/media/nate/Data/Results/UCSNet/dtu/Output_training"
+SCENE_LIST="./dataloader/datalist/dtu/testing_all.txt"
+DATA_PATH="/media/nate/Data/UCSNet/dtu/new_training"
+MAX_H=1184
+MAX_W=1600
 
-MAX_H=512
-MAX_W=640
+#MAX_H=512
+#MAX_W=640
 
 EXE_PATH="/home/nate/dev/research/fusibile/fusibile"
 EVAL=/media/nate/Data/Evaluation/dtu/

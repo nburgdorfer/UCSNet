@@ -72,7 +72,7 @@ def evaluate(depth, mask, label, thresh):
     tot_acc = torch.stack(batch_acc)
     return tot_abs.mean(), tot_acc.mean()
 
-def save_cameras(cam, path):
+def save_cameras(cam, min_depth, max_depth, path):
     cam_txt = open(path, 'w+')
 
     cam_txt.write('extrinsic\n')
@@ -87,6 +87,10 @@ def save_cameras(cam, path):
         for j in range(3):
             cam_txt.write(str(cam[1, i, j]) + ' ')
         cam_txt.write('\n')
+    cam_txt.write('\n')
+
+    cam_txt.write("{} {} {} {}".format(min_depth, ((max_depth-min_depth)/256), 256, max_depth))
+
     cam_txt.close()
 
 def read_pfm(filename):
