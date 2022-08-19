@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 ### parameters ###
-OUTPUT_PATH="/media/nate/Data/Results/UCSNet/dtu/Output_training"
+OUTPUT_PATH="/media/nate/Data/Results/UCSNet/dtu/Output_testing_scaled"
 SCENE_LIST="./dataloader/datalist/dtu/testing_all.txt"
-DATA_PATH="/media/nate/Data/UCSNet/dtu/new_training"
-MAX_H=1184
-MAX_W=1600
+DATA_PATH="/media/nate/Data/UCSNet/dtu/testing_scaled"
+MAX_H=576
+MAX_W=800
 
 #MAX_H=512
 #MAX_W=640
