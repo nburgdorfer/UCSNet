@@ -145,10 +145,11 @@ class MVSTrainSet(Dataset):
         return res
 
 class MVSTestSet(Dataset):
-    def __init__(self, root_dir, data_list, max_h, max_w, num_views=4):
+    def __init__(self, root_dir, data_list, max_h, max_w, dataset="dtu", num_views=4):
         super(MVSTestSet, self).__init__()
 
         self.root_dir = root_dir
+        self.dataset = dataset
         scene_names = open(data_list, 'r').readlines()
         self.scene_names = list(map(lambda x: x.strip(), scene_names))
         self.num_views = num_views
@@ -159,7 +160,10 @@ class MVSTestSet(Dataset):
     def generate_pairs(self, ):
         data_pairs = []
         for scene_name in self.scene_names:
-            pair_list = open('{}/Cameras/pair.txt'.format(self.root_dir, scene_name), 'r').readlines()
+            if (self.dataset == "dtu"):
+                pair_list = open('{}/Cameras/pair.txt'.format(self.root_dir), 'r').readlines()
+            else:
+                pair_list = open('{}/Cameras/{}/pair.txt'.format(self.root_dir, scene_name), 'r').readlines()
             pair_list = list(map(lambda x: x.strip(), pair_list))
             cnt = int(pair_list[0])
             for i in range(cnt):
@@ -207,7 +211,10 @@ class MVSTestSet(Dataset):
             image = Image.open(img_path)
             image = np.array(image, dtype=np.float32) / 255.
 
-            cam_path = '{}/Cameras/{:08d}_cam.txt'.format(self.root_dir, idx)
+            if (self.dataset == "dtu"):
+                cam_path = '{}/Cameras/{:08d}_cam.txt'.format(self.root_dir, idx)
+            else:
+                cam_path = '{}/Cameras/{}/{:08d}_cam.txt'.format(self.root_dir, scene_name, idx)
             extr_mat, intr_mat, min_dep, max_dep = self.parse_cameras(cam_path)
 
             image, intr_mat = scale_inputs(image, intr_mat, max_h=self.max_h, max_w=self.max_w)

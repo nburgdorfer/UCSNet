@@ -30,6 +30,7 @@ parser.add_argument('--max_w', type=int, help='image width', default=1920)
 parser.add_argument('--num_views', type=int, help='num of candidate views', default=3)
 parser.add_argument('--lamb', type=float, help='the interval coefficient.', default=1.5)
 parser.add_argument('--net_configs', type=str, help='number of samples for each stage.', default='64,32,8')
+parser.add_argument('--dataset', type=str, help='dataset being tested.', default='dtu')
 parser.add_argument('--ckpt', type=str, help='the path for pre-trained model.', default='./checkpoints/model.ckpt')
 
 args = parser.parse_args()
@@ -38,7 +39,7 @@ args = parser.parse_args()
 def main(args):
     # dataset, dataloader
     testset = MVSTestSet(root_dir=args.root_path, data_list=args.test_list,
-                         max_h=args.max_h, max_w=args.max_w, num_views=args.num_views)
+                         max_h=args.max_h, max_w=args.max_w, dataset=args.dataset, num_views=args.num_views)
     test_loader = DataLoader(testset, 1, shuffle=False, num_workers=4, drop_last=False)
 
     # build model
