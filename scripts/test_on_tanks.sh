@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 ### Testing ###
-OUTPUT_PATH="/media/nate/Data/Results/UCSNet/tnt/Output_training"
+OUTPUT_PATH="/media/Data2/nate/Results/UCSNet/tnt/Output_training"
 SCENE_LIST="./dataloader/datalist/tanks/training.txt"
-DATA_PATH="/media/nate/Data/TNT/training"
+DATA_PATH="/media/Data/nate/TNT/training"
 
 CUDA_VISIBLE_DEVICES=0 python test.py --root_path $DATA_PATH --test_list $SCENE_LIST --save_path $OUTPUT_PATH --dataset tnt --max_h 1080 --max_w 1920
 
