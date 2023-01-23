@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
 ### Testing ###
-OUTPUT_PATH="/media/nate/Data/Results/UCSNet/tnt/Output_training"
-SCENE_LIST="./dataloader/datalist/tanks/training.txt"
-DATA_PATH="/media/nate/Data/TNT/training"
+#DATASET=training
+#DATASET=intermediate
+DATASET=advanced
+
+OUTPUT_PATH="/media/nate/Data/Results/UCSNet/tnt/Output_${DATASET}"
+SCENE_LIST="./dataloader/datalist/tanks/${DATASET}.txt"
+DATA_PATH="/media/nate/Data/TNT/${DATASET}"
 
 CUDA_VISIBLE_DEVICES=0 python test.py --root_path $DATA_PATH --test_list $SCENE_LIST --save_path $OUTPUT_PATH --dataset tnt --max_h 1080 --max_w 1920
 

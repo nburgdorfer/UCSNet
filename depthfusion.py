@@ -17,8 +17,10 @@ import sys
 import shutil
 from struct import *
 
-sys.path.insert(0, '..')
-from utils.utils import read_pfm, write_pfm
+dirname = os.path.dirname(__file__)
+rel_path = os.path.join(dirname, './utils')
+sys.path.append(rel_path)
+from utils import read_pfm, write_pfm
 
 import cv2
 import numpy as np
