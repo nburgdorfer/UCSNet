@@ -89,7 +89,7 @@ def save_cameras(cam, min_depth, max_depth, path):
         cam_txt.write('\n')
     cam_txt.write('\n')
 
-    cam_txt.write("{} {} {} {}".format(min_depth, ((max_depth-min_depth)/256), 256, max_depth))
+    cam_txt.write("{} {} {} {}".format(min_depth, ((max_depth-min_depth)/512), 512, max_depth))
 
     cam_txt.close()
 
